@@ -1,0 +1,28 @@
+<header>
+  <div class="search-weather">
+    <div class="search-weather__form">
+      <mat-form-field class="full-width">
+        <mat-label>Select a city</mat-label>
+        <mat-select [(value)]="selectedCity" class="search-weather__select">
+          <mat-option *ngFor="let city of cities?.data" [value]="city">{{
+            city
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="accent"
+        class="search-weather__submit"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</header>
+
+<app-weather-card
+  *ngIf="weatherData"
+  [weatherData]="weatherData.data[0]"
+></app-weather-card>

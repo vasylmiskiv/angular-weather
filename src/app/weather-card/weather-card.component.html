@@ -1,0 +1,54 @@
+<section>
+  <div class="units-widget">
+    <mat-form-field>
+      <mat-label>Temperature Unit</mat-label>
+      <mat-select [(value)]="selectedUnit">
+        <mat-option value="celsius">Celsius</mat-option>
+        <mat-option value="fahrenheit">Fahrenheit</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="weather-widget">
+    <mat-card class="weather-card">
+      <mat-card-header>
+        <mat-card-title class="weather-card__title">
+          <div>Weather</div>
+          <div>{{ weatherData.ob_time }}</div></mat-card-title
+        >
+        <mat-card-subtitle>{{ weatherData.city_name }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="weather-info">
+          <!-- <div class="weather-icon">
+            <img [src]="weatherData?.iconUrl" [alt]="weatherData?.description" />
+          </div> -->
+          <div class="weather-info__item temperature">
+            <div>Temperature:</div>
+            <div>
+              <span class="current-temp"> {{ weatherData.app_temp }}</span>
+              <span class="temp-unit">&deg;C</span>
+            </div>
+          </div>
+
+          <div class="weather-info__item humidity">
+            <div>Humidity:</div>
+            <div>
+              {{ weatherData.rh }}
+            </div>
+          </div>
+
+          <div class="weather-info__item wind-speed">
+            <div>Wind speed:</div>
+            <div>
+              {{ weatherData.wind_spd.toFixed(2) }}
+            </div>
+          </div>
+        </div>
+        <div class="weather-description">
+          {{ weatherData.weather.description }}
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>

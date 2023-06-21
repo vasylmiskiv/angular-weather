@@ -1,0 +1,21 @@
+header {
+  background-color: rgb(37, 44, 82);
+}
+
+.search-weather {
+  justify-content: center;
+  display: flex;
+
+  &__form {
+    padding: 30px 30px 10px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  &__submit {
+    height: 55px;
+    padding: 0 50px;
+    align-self: stretch;
+  }
+}
