@@ -24,5 +24,7 @@
 
 <app-weather-card
   *ngIf="weatherData"
+  [selectedCity]="selectedCity"
   [weatherData]="weatherData.data[0]"
+  [isLoading]="isLoading"
 ></app-weather-card>

@@ -1,22 +1,31 @@
 <section>
   <div class="units-widget">
-    <mat-form-field>
-      <mat-label>Temperature Unit</mat-label>
-      <mat-select [(value)]="selectedUnit">
-        <mat-option value="celsius">Celsius</mat-option>
-        <mat-option value="fahrenheit">Fahrenheit</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div class="weather-widget">
-    <mat-card class="weather-card">
-      <mat-card-header>
-        <mat-card-title class="weather-card__title">
-          <div>Weather</div>
-          <div>{{ weatherData.ob_time }}</div></mat-card-title
+    <div class="units-widget">
+      <mat-form-field>
+        <mat-label>Temperature Unit</mat-label>
+        <mat-select
+          [(value)]="selectedUnit"
+          (selectionChange)="handleChangeUnits($event.value)"
         >
-        <mat-card-subtitle>{{ weatherData.city_name }}</mat-card-subtitle>
+          <mat-option value="celsius">Celsius</mat-option>
+          <mat-option value="fahrenheit">Fahrenheit</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="weather-widget">
+    <mat-progress-spinner
+      color="primary"
+      mode="indeterminate"
+      *ngIf="isLoading"
+    ></mat-progress-spinner>
+
+    <mat-card class="weather-card" *ngIf="!isLoading">
+      <mat-card-header>
+        <div class="card-title">
+          <h3 class="card-title__city">{{ weatherData.city_name }}</h3>
+          <div class="card-title__time">{{ weatherData.ob_time }}</div>
+        </div>
       </mat-card-header>
       <mat-card-content>
         <div class="weather-info">
@@ -26,23 +35,18 @@
           <div class="weather-info__item temperature">
             <div>Temperature:</div>
             <div>
-              <span class="current-temp"> {{ weatherData.app_temp }}</span>
-              <span class="temp-unit">&deg;C</span>
+              <span class="current-temp"> {{ weatherData.app_temp }} </span>
+              <span class="temp-unit">&deg;{{ unitSymbol }}</span>
             </div>
           </div>
-
           <div class="weather-info__item humidity">
             <div>Humidity:</div>
-            <div>
-              {{ weatherData.rh }}
-            </div>
+            <div>{{ weatherData.rh }}%</div>
           </div>
 
           <div class="weather-info__item wind-speed">
             <div>Wind speed:</div>
-            <div>
-              {{ weatherData.wind_spd.toFixed(2) }}
-            </div>
+            <div>{{ weatherData.wind_spd.toFixed() }} m/s</div>
           </div>
         </div>
         <div class="weather-description">

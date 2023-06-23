@@ -18,11 +18,22 @@ section {
 .weather-card {
   width: 450px;
   margin: 50px;
-  padding: 10px;
+  padding: 0px 12px 12px 12px;
+}
 
-  &__title {
-    display: flex;
-    justify-content: space-between;
+.card-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__city {
+    text-transform: uppercase;
+  }
+
+  &__time {
+    font-size: 13px;
+    color: rgb(148, 148, 148);
   }
 }
 
@@ -35,7 +46,7 @@ section {
     position: relative;
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
+    padding: 20px 0 10px 0;
 
     &::after {
       content: "";
@@ -44,7 +55,7 @@ section {
       left: 0;
       width: 100%;
       height: 1px;
-      background-color: rgb(206, 206, 206);
+      background-color: rgb(226, 226, 226);
     }
   }
 }

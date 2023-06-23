@@ -1,6 +1,11 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CitiesData } from '../models/weather.model';
+import {
+  CitiesData,
+  CitiesResponse,
+  WeatherData,
+  WeatherResponse,
+} from '../models/weather.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
@@ -15,13 +20,16 @@ export class WeatherService {
       country: 'ukraine',
     };
 
-    return this.http.post<CitiesData>(environment.citiesApiBaseUrl, data);
+    return this.http.post<CitiesResponse>(environment.citiesApiBaseUrl, data);
   }
 
-  getWeaterByCity(selectedCity: string): Observable<any> {
-    return this.http.get<any>(
+  getWeaterByCity(
+    selectedCity: string,
+    units: string
+  ): Observable<WeatherResponse> {
+    return this.http.get<WeatherResponse>(
       environment.weatherbitApiBaseUrl +
-        `?city=${selectedCity}&country=UA&key=${environment.weatherbitAPIKey}`
+        `?city=${selectedCity}&country=UA&units=${units}&key=${environment.weatherbitAPIKey}`
     );
   }
 }
